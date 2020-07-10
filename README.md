@@ -4,13 +4,14 @@ This is the source code for ***PVN3D: A Deep Point-wise 3D Keypoints Voting Netw
 <div align=center><img width="60%" height="60%" src="pictures/intro.gif"/></div>
 
 ## Installation
-- Install CUDA9.0
+- Install CUDA9.0+
 - Set up python environment from requirement.txt:
   ```shell
   pip3 install -r requirement.txt 
   ```
 - Install tkinter through ``sudo apt install python3-tk``
 - Install [python-pcl](https://github.com/strawlab/python-pcl).
+  - For Ubuntu 18.04, refer to [this issue](https://github.com/strawlab/python-pcl/issues/317#issuecomment-628115649).
 - Install PointNet++ (refer from [Pointnet2_PyTorch](https://github.com/erikwijmans/Pointnet2_PyTorch)):
   ```shell
   python3 setup.py build_ext
