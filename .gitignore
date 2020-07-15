@@ -5,3 +5,5 @@
 ****/*.so
 build
 ****/knn
+YCB_Video_Dataset
+.vscode
