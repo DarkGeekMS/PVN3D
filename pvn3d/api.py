@@ -128,7 +128,7 @@ class RGBDPoseAPI():
         choose = choose[:, choose_2]
 
         # define classes indices to be considered
-        cls_id_lst = np.array([range(1, 22)])
+        cls_id_lst = np.array(range(1, 22))
 
         # convert processed data into torch tensors
         rgb = torch.from_numpy(rgb.astype(np.float32))
