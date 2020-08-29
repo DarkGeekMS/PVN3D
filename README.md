@@ -4,16 +4,63 @@ This is the source code for ***PVN3D: A Deep Point-wise 3D Keypoints Voting Netw
 <div align=center><img width="60%" height="60%" src="pictures/intro.gif"/></div>
 
 ## Installation
-- Install CUDA9.0+
-- Set up python environment from requirement.txt:
+
+- Remove Old NVIDIA installation.
   ```shell
-  pip3 install -r requirement.txt 
+  sudo apt-get purge nvidia*
+  sudo apt-get autoremove
+  sudo apt-get autoclean
+  sudo rm -rf /usr/local/cuda*
+  sudo rm /etc/apt/sources.list.d/cuda*
   ```
+
+- Install the NVIDIA driver version 440.
+  ```shell
+  sudo add-apt-repository ppa:graphics-drivers/ppa
+  sudo apt update
+  sudo apt install nvidia-driver-440
+  # reboot
+  shutdown -r now
+  ```
+
+- Install CUDA10.2 from the [NIVIDA website](https://developer.nvidia.com/cuda-10.2-download-archive).
+  Remove other versions as explained in the [NVIDIA installation guide](https://docs.nvidia.com/cuda/archive/10.2/cuda-installation-guide-linux/index.html#handle-uninstallation).
+  For Ubuntu 18.04 & 20.04 the instruction for "deb (network)" work well:
+  ```shell
+  wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-ubuntu1804.pin
+  sudo mv cuda-ubuntu1804.pin /etc/apt/preferences.d/cuda-repository-pin-600
+  sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+  sudo add-apt-repository "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/ /"
+  sudo apt-get update
+  sudo apt-get -y install cuda-10-2
+  sudo apt install libcudnn7
+  ```
+
+- Create and activate a python3 virtual environment and install the requirements (python 3.6 required).
+  ```shell
+  python3 -m venv venv
+  source venv/bin/activate
+  # Cython an numpy must be installed before requirements.txt
+  pip3 install Cython numpy --user
+  pip3 install -r requirements.txt
+  ```
+
 - Install tkinter through ``sudo apt install python3-tk``
-- Install [python-pcl](https://github.com/strawlab/python-pcl).
-  - For Ubuntu 18.04, refer to [this issue](https://github.com/strawlab/python-pcl/issues/317#issuecomment-628115649).
+
+- Install python-pcl.
+  ```shell
+  # install dependencies
+  sudo apt install libpcl-dev libvtk6-dev
+  # pip install works for python3.6 on Ubuntu 18.04 & 20.04
+  pip install python-pcl
+  ```
+
 - Install PointNet++ (refer from [Pointnet2_PyTorch](https://github.com/erikwijmans/Pointnet2_PyTorch)):
   ```shell
+  git clone https://github.com/erikwijmans/Pointnet2_PyTorch
+  cd Pointnet2_PyTorch
+  pip3 install -r requirements.txt
+  cd ..
   python3 setup.py build_ext
   ```
 
